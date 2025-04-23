@@ -1,131 +1,143 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Formulario de Solicitud de Fondos</title>
-<style>
-  body {
-    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f3f3f3;
-    margin: 0;
-    padding: 40px 0;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    min-height: 100vh;
-  }
+  <style>
+    body {
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f3f3f3;
+      margin: 0;
+      padding: 40px 0;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+    }
 
-  .container {
-    background-color: white;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    width: 90%;
-    max-width: 1200px;
-  }
+    .container {
+      background-color: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      width: 90%;
+      max-width: 1200px;
+    }
 
-  h2, h3, label {
-    color: #333;
-    font-weight: 600;
-  }
+    h2, h3, label {
+      color: #333;
+      font-weight: 600;
+    }
 
-  input[type="text"], input[type="number"], textarea, select {
-    font-family: inherit;
-    font-size: 15px;
-    padding: 8px 10px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    margin-top: 5px;
-    width: 100%;
-    box-sizing: border-box;
-  }
+    input[type="text"], textarea {
+      font-family: inherit;
+      font-size: 15px;
+      padding: 8px 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      margin-top: 5px;
+      width: 100%;
+      box-sizing: border-box;
+    }
 
-  textarea {
-    height: 80px;
-  }
+    textarea {
+      height: 80px;
+    }
 
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-    font-size: 14px;
-  }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      font-size: 14px;
+    }
 
-  th, td {
-    border: 1px solid #ddd;
-    padding: 10px;
-    vertical-align: top;
-    text-transform: uppercase;
-  }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 10px;
+      vertical-align: top;
+      text-align: center;
+    }
 
-  th {
-    background-color: #f2f2f2;
-    font-weight: 600;
-  }
+    th {
+      background-color: #f2f2f2;
+      font-weight: 600;
+    }
 
-  button {
-    background-color: #0078d4;
-    color: white;
-    border: none;
-    padding: 10px 18px;
-    font-size: 14px;
-    font-weight: 600;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: background-color 0.2s;
-  }
+    td:focus {
+      outline: 2px solid #0078d4;
+    }
 
-  button:hover {
-    background-color: #005fa1;
-  }
+    button {
+      background-color: #0078d4;
+      color: white;
+      border: none;
+      padding: 10px 18px;
+      font-size: 14px;
+      font-weight: 600;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
 
-  .correo-lista {
-    margin-top: 30px;
-    padding: 15px;
-    background-color: #eef3fa;
-    border-left: 4px solid #0078d4;
-    font-size: 14px;
-    border-radius: 5px;
-    color: #333;
-  }
-</style>
+    button:hover {
+      background-color: #005fa1;
+    }
 
+    .correo-lista {
+      margin-top: 30px;
+      padding: 15px;
+      background-color: #eef3fa;
+      border-left: 4px solid #0078d4;
+      font-size: 14px;
+      border-radius: 5px;
+      color: #333;
+    }
+  </style>
 </head>
 <body>
 <div class="container">
   <h2>Formulario de Solicitud de Fondos</h2>
 
-  <h3><label>Asunto:</h3>
-    <input type="text" id="asunto" value="SOLICITUD DE FONDOS" required>
-  </label>
+  <h3><label>Asunto:</label></h3>
+  <input type="text" id="asunto" value="SOLICITUD DE FONDOS" required>
 
-  <h3><label>Mensaje:</h3>
-    <textarea id="mensaje" rows="4" required></textarea>
-  </label>
+  <h3><label>Mensaje:</label></h3>
+  <textarea id="mensaje" rows="4" required></textarea>
 
   <h3>Proveedores</h3>
-  <button onclick="agregarFila()">Agregar Proveedor</button><br><br>
-
+  <button onclick="agregarFila()">Agregar Proveedor</button>
+  <br><br>
   <table id="tablaProveedores">
-  <thead>
-    <tr>
-      <th style="width: 10%;">CODIGO OBRA</th>
-      <th style="width: 10%;">CI/NIT</th>
-      <th style="width: 20%;">NOMBRE O PROVEEDOR</th>
-      <th style="width: 30%;">DETALLE</th>
-      <th style="width: 15%;">IMPORTE BS</th>
-      <th style="width: 10%;">FACTURA</th>
-      <th style="width: 5%;"></th>
-    </tr>
-  </thead>
-  <tbody>
-      <!-- Filas dinámicas -->
+    <thead>
+      <tr>
+        <th>CODIGO OBRA</th>
+        <th>CI/NIT</th>
+        <th>NOMBRE O PROVEEDOR</th>
+        <th>DETALLE</th>
+        <th>IMPORTE BS</th>
+        <th>FACTURA (Si/No)</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Filas iniciales -->
+      <tr>
+        <td contenteditable="true"></td>
+        <td contenteditable="true"></td>
+        <td contenteditable="true"></td>
+        <td contenteditable="true"></td>
+        <td contenteditable="true"></td>
+        <td contenteditable="true"></td>
+        <td><button onclick="this.parentElement.parentElement.remove()">Eliminar</button></td>
+      </tr>
     </tbody>
-  </table><br>
+  </table>
 
   <button onclick="enviarFormulario()">Enviar Solicitud</button>
 
   <div class="correo-lista">
-    <strong>Se enviara el correo a:</strong><br>
+    <strong>Se enviará el correo a:</strong><br>
     eddy.mendez@toyosa.com<br>
     rodrigo.tejada@toyosa.com<br>
     rosario.saavedra@toyosa.com<br>
@@ -135,50 +147,60 @@
     raul.paredes@toyosa.com
   </div>
 
-<script>
-  function agregarFila() {
-    const tbody = document.getElementById("tablaProveedores").getElementsByTagName("tbody")[0];
-    const fila = tbody.insertRow();
+  <script>
+    const table = document.getElementById("tablaProveedores");
 
-    const campos = [
-      { tipo: "text" }, // CODIGO OBRA
-      { tipo: "text" }, // CI/NIT
-      { tipo: "text" }, // NOMBRE
-      { tipo: "text" }, // DETALLE
-      { tipo: "number", step: "0.01", min: "0" } // IMPORTE BS
-    ];
+    // Función para agregar fila
+    function agregarFila() {
+      const tbody = table.querySelector("tbody");
+      const fila = document.createElement("tr");
 
-    campos.forEach(c => {
-      const celda = fila.insertCell();
-      const input = document.createElement("input");
-      input.type = c.tipo;
-      input.style.width = "100%";
-      if (c.tipo === "number") {
-        input.step = c.step;
-        input.min = c.min;
+      for (let i = 0; i < 6; i++) {
+        const celda = document.createElement("td");
+        celda.contentEditable = "true";
+        fila.appendChild(celda);
       }
-      celda.appendChild(input);
-    });
 
-    // Columna FACTURA
-    const celdaFactura = fila.insertCell();
-    const selectFactura = document.createElement("select");
-    selectFactura.style.width = "100%";
-    ["SI", "NO"].forEach(op => {
-      const option = document.createElement("option");
-      option.value = op;
-      option.textContent = op;
-      selectFactura.appendChild(option);
-    });
-    celdaFactura.appendChild(selectFactura);
+      const celdaAccion = document.createElement("td");
+      const btnEliminar = document.createElement("button");
+      btnEliminar.textContent = "Eliminar";
+      btnEliminar.onclick = () => fila.remove();
+      celdaAccion.appendChild(btnEliminar);
+      fila.appendChild(celdaAccion);
 
-    // Columna Eliminar
-    const celdaAccion = fila.insertCell();
-    const btnEliminar = document.createElement("button");
-    btnEliminar.textContent = "Eliminar";
-    btnEliminar.onclick = () => fila.remove();
-    celdaAccion.appendChild(btnEliminar);
-  }
+      tbody.appendChild(fila);
+    }
+
+    // Manejo del pegado desde Excel
+    table.addEventListener("paste", (event) => {
+      event.preventDefault();
+      const text = event.clipboardData.getData("text");
+      const rows = text.split("\n");
+      const tbody = table.querySelector("tbody");
+
+      rows.forEach(row => {
+        if (row.trim()) {
+          const cols = row.split("\t");
+          const fila = document.createElement("tr");
+
+          for (let i = 0; i < 6; i++) {
+            const celda = document.createElement("td");
+            celda.contentEditable = "true";
+            celda.textContent = cols[i] || ""; // Vacío si no hay datos
+            fila.appendChild(celda);
+          }
+
+          const celdaAccion = document.createElement("td");
+          const btnEliminar = document.createElement("button");
+          btnEliminar.textContent = "Eliminar";
+          btnEliminar.onclick = () => fila.remove();
+          celdaAccion.appendChild(btnEliminar);
+          fila.appendChild(celdaAccion);
+
+          tbody.appendChild(fila);
+        }
+      });
+    });
 
   function enviarFormulario() {
     const asunto = document.getElementById("asunto").value.trim();
@@ -196,19 +218,17 @@
     }
 
     let tablaHTML = "<table border='1' style='border-collapse: collapse; width: 100%;'>";
-    tablaHTML += "<tr><th>NRO OBRA</th><th>CI</th><th>NOMBRE O PROVEEDOR</th><th>DETALLE</th><th>IMPORTE BS</th><th>FACTURA</th></tr>";
+    tablaHTML += "<tr><th>CODIGO OBRA</th><th>CI/NIT</th><th>NOMBRE O PROVEEDOR</th><th>DETALLE</th><th>IMPORTE BS</th><th>FACTURA (Si/No)</th></tr>";
 
     for (let i = 0; i < filas.length; i++) {
-      const inputs = filas[i].querySelectorAll("input");
-      const selectFactura = filas[i].querySelector("select");
-
+      const celdas = filas[i].cells;
       tablaHTML += `<tr>
-        <td>${inputs[0].value}</td>
-        <td>${inputs[1].value}</td>
-        <td>${inputs[2].value}</td>
-        <td>${inputs[3].value}</td>
-        <td>${inputs[4].value}</td>
-        <td>${selectFactura.value}</td>
+        <td>${celdas[0].textContent.trim()}</td>
+        <td>${celdas[1].textContent.trim()}</td>
+        <td>${celdas[2].textContent.trim()}</td>
+        <td>${celdas[3].textContent.trim()}</td>
+        <td>${celdas[4].textContent.trim()}</td>
+        <td>${celdas[5].textContent.trim()}</td>
       </tr>`;
     }
 
@@ -220,6 +240,7 @@
       ${tablaHTML}
     `;
 
+    // Copiar contenido al portapapeles
     const tempDiv = document.createElement("div");
     tempDiv.innerHTML = cuerpo;
     document.body.appendChild(tempDiv);
@@ -239,20 +260,22 @@
 
     document.body.removeChild(tempDiv);
 
+    // Configuración del correo en Outlook
     const destinatarios = [
       "eddy.mendez@toyosa.com",
-	"rodrigo.tejada@toyosa.com",
-	"rosario.saavedra@toyosa.com",
-	"yesenia.orellana@toyosa.com",
-	"karol.caero@toyosa.com",
-	"elvia.terrazas@toyosa.com",
-	"raul.paredes@toyosa.com"
+      "rodrigo.tejada@toyosa.com",
+      "rosario.saavedra@toyosa.com",
+      "yesenia.orellana@toyosa.com",
+      "karol.caero@toyosa.com",
+      "elvia.terrazas@toyosa.com",
+      "raul.paredes@toyosa.com"
     ].join(";");
 
     const url = `https://outlook.office.com/mail/deeplink/compose?to=${encodeURIComponent(destinatarios)}&subject=${encodeURIComponent(asunto)}`;
     window.open(url, '_blank');
   }
-</script>
+
+  </script>
 </div>
 </body>
 </html>
